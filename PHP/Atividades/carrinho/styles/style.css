@@ -1,0 +1,34 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(107, 186, 255);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.catalogo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(151, 204, 250);
+    width: 800px;
+    height: 800px;
+}
