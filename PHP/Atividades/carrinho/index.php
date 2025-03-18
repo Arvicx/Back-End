@@ -2,6 +2,27 @@
 
     //inicia a sessao
     session_start();
+    
+    class Produto{
+        public $id;
+        public $nome;
+        public $valor;
+        public $desc;
+
+        public function __construct($id,$nome,$valor,$desc){
+            $this->id = $id;
+            $this->nome = $nome;
+            $this->valor = $valor;
+            $this->desc = $desc;
+
+        }
+
+    }
+
+    $nome;
+
+    // public - qualquer parte do código mexe no atributo
+    // private - apenas o que está dentro do class mexe no atributo
 
     // verifica se carrinho está null
     if(!isset($_SESSION['carrinho'])){
@@ -10,17 +31,43 @@
 
     // adiciona o produto
     if(isset($_GET['produto'])){
-        // NOMEVARIAVEL[INDICEVAZIO] = PRODUTO 
-        //
-        $_SESSION['carrinho'][] = $_GET['produto'];
+        $produtosDados = new Produto($_GET['id'],$_GET['produto'],$_GET['valor'],$_GET['desc']);
+        $_SESSION['carrinho'][] = $produtosDados;
     }
+
     // $_SESSION['carrinho'] += $_GET['produto'];
+    
     // var_dump($_SESSION['carrinho']);
+    
     if(isset($_GET['deletarCarrinho'])){
         // session_destroy();
         $_SESSION['carrinho'] = [];
     }
 
+    if(isset($_GET['removerItem'])){
+        foreach($_SESSION['carrinho'] as $id => $produto){
+            if($produto->id == $_GET['removerItem']){
+                unset($_SESSION['carrinho'][$id]);
+                $_SESSION['carrinho'] = array_values($_SESSION['carrinho']);
+            }
+        }
+        
+    }
+
+?>
+
+<?php 
+    $valorTotal = 0;
+
+    foreach($_SESSION['carrinho'] as $produto){
+        $valorTotal += $produto->valor;
+    }
+
+    if($valorTotal == 0){
+        echo "O Carrinho está vazio";
+    }else{
+        echo "O valor total é R$ $valorTotal";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -39,36 +86,74 @@
     </header>
     <main>
         <div class="catalogo">
-            <div id="catalogoNome">
+            <div class="catalogoNome">
                 <h2>Catálogo</h2>
             </div>
-            <div id="catalogoItens">
+            <div class="catalogoItens">
                 <div class="card" style="width: 18rem;">
-                    <img src="#" class="card-img-top" alt="...">
+                    <img src="images/SSD.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">SSD</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <p class="card-text">SSD Kingston 2TBs</p>
                     </div>
                     <div class="card-body">
-                        <a href="#" class="card-link">Adicionar ao Carrinho</a>
+                        <a href="?id=1&produto=SSD&valor=199.99&desc='1TB de Armazenamento'">Adicionar ao Carrinho</a>
                         <a href="#" class="card-link">Comprar Agora</a>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="images/Disco de Memória.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Disco de Memória</h5>
+                        <p class="card-text">Disco de Memória Mais Zika do Universo da Face da Terra</p>
+                    </div>
+                    <div class="card-body">
+                        <a href="?id=2&produto=Disco de Memória&valor=50.00&desc='Um disco de Memória'">Adicionar ao Carrinho</a>
+                        <a href="#" class="card-link">Comprar Agora</a>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="images/Memória RAM.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Memória RAM</h5>
+                        <p class="card-text">Memória RAM 64GB Pichincha DDR4</p>
+                    </div>
+                    <div class="card-body">
+                    <a href="?id=3&produto=Memória RAM&valor=100.00&desc='Memória RAM de 16GB'">Adicionar ao Carrinho</a>
+                    <a href="#" class="card-link">Comprar Agora</a>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img src="images/Placa Mãe.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Placa Mãe</h5>
+                        <p class="card-text">Placa Mãe do ano</p>
+                    </div>
+                    <div class="card-body">
+                    <a href="?id=4&produto=Placa Mãe&valor=300.00&desc='Placa Mãe de Todos e Avó de Alguns'">Adicionar ao Carrinho</a>
+                    <a href="#" class="card-link">Comprar Agora</a>
                     </div>
                 </div>
             </div>
 
         </div>
-        <a href="?produto=SSD">Adicionar SSD</a>
-        <a href="?produto=Disco de Memória">Adicionar Disco de Memória</a>
-        <a href="?produto=Memória RAM">Adicionar Memória RAM</a>
-        <a href="?produto=Placa Mãe">Adicionar Placa Mãe</a>
-        <a href="?deletarCarrinho=True">Deletar Carrinho</a>
+        
+        <button><a href="?deletarCarrinho=True">Deletar Carrinho</a></button>
 
         <ol>
             <?php 
                 // foreach(array as alias){}
                 // foreach(filmes as filmes){filme.nome , filme.desc}
                 foreach($_SESSION['carrinho'] as $produto){
-                    echo "<li> $produto </li>";
+                    echo "<li> 
+                        <h1>$produto->nome</h1>
+                        <p>$produto->valor</p>
+                        <p>$produto->desc</p>
+                        <a href='?removerItem=$produto->id'>x</a>
+                    </li>";
                 }
             ?>
         </ol>

@@ -25,10 +25,43 @@ main{
 }
 
 .catalogo{
+    width: 1200px;
+    padding: 20px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     background-color: rgb(151, 204, 250);
-    width: 800px;
-    height: 800px;
+
+}
+
+.catalogoNome{
+    display: flex;
+    justify-content: center;
+}
+
+.catalogoItens{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.card{
+    background-color: aliceblue;
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(69, 168, 255);
+    color: white;
+    a{
+        color: white;
+        text-decoration: none;
+    }
 }
