@@ -1,5 +1,9 @@
 <h1>Você está na página de listas de carros</h1>
 
+<a href="index.php?menu=adicionarCarro">
+    <button type="button">Adicionar Carro</button>
+</a>
+
 <table>
     <tr>
         <th>Modelo</th>
@@ -25,6 +29,7 @@
                 <td><?= $dados['valorCarro'] ?></td>
                 <td><?= $dados['anoCarro'] ?></td>
                 <td><?= $dados['corCarro'] ?></td>
+                <td><a href="index.php?menu=editarCarro&idCarros=<?=$dados['idCarros']?>" class="btn btn-primary">EDITAR</a></td>
                 <br>
             </tr>
         <?php
