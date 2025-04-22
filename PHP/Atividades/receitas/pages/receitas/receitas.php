@@ -1,8 +1,12 @@
-<h1>voce ta na receitas</h1>
 
 <a href="index.php?menu=adicionarReceita">
     <button class="btn btn-primary" type="button">Adicionar Receita</button>
 </a>
+
+<form action="index.php?menu=receitas" method="post">
+    <input type="text" name="pesquisa" id="pesquisa">
+    <button type="submit">PESQUISAR</button>
+</form>
 
 <table class="table">
     <tr>
@@ -11,7 +15,6 @@
         <th>Texto da Receita</th>
         <th>Autor</th>
         <th>Tipo da Receita</th>
-        <th>Imagem</th>
     </tr>
 
     <?php 
@@ -29,7 +32,7 @@
         upper(tipoReceita) AS tipoReceita,
         imagem FROM receitas WHERE
         id = '$termoPesquisado' OR
-        titulo LIKE '%$termoPesquisado%'
+        titulo OR tipoReceita LIKE '%$termoPesquisado%'
         ORDER BY titulo";
 
         $query = mysqli_query($conexao,$sql) or die("Erro na requisição".mysqli_error($conexao));

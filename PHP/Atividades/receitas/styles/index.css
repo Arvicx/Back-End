@@ -1,6 +1,7 @@
 *{
     margin: 0%;
     padding: 0%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
@@ -10,4 +11,31 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+header{
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    background: linear-gradient(to right, #f72020 , #a31a1a, #530909);
+    color: white;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+main{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+img{
+    width: 800px;
+    border-radius: 10px;
 }
