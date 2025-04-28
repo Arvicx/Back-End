@@ -1,0 +1,24 @@
+:root{
+    --corPrimaria : #7267EB ;
+    --corSecundaria : #6CB2EB ;
+    --corTerciaria : #5B7DEB ;
+    --roxoVivo: #7C2DEB ; 
+    --meiaCor : #5B7DEB ;
+}
+
+header{
+    background-color: var(--corSecundaria);
+}
+
+h1,h2,h3,h4,h5,h6,a{
+    color: var(--roxoVivo) !important;
+}
+
+#bg-banner{
+    height: 300px!important;
+    background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK8egUm7pfU3m3LqKVbkOS-4EYODbxLj7Xb5N338mZMw0CY1MWhSsbu6ezyzTT8uCsGAtkiYzWXa-9M55cuj_vog);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px 0px;
+}
